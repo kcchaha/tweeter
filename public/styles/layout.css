@@ -18,6 +18,17 @@ body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  background-color: white;
+    width: 550px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 80px;
+    height: 100%;
+
 }
 
 /*

@@ -2,31 +2,82 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
+    <title>Tweeter - Home</title>
+
+     <!-- External Font from Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Merienda:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
 
   <body>
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" width="80px" height="80px">
+      <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <div id="btn">
+        <button class="compose">Compose</button>
+      </div>
     </nav>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
+        <section class="new-tweet">
+            <h2>Compose Tweet</h2>
+            <form id="input-tweet" action="/tweets" method="POST">
+              <textarea name="text" placeholder="What are you humming about?" id="textInput"></textarea>
+              <div class="alert alert-danger" id="zeroInput">
+                  <strong>Error!</strong> Let's Tweet something!
+              </div>
+              <div class="alert alert-danger" id="overMax">
+                <strong>Error!</strong> The max length of your tweet is exceeded.
+              </div>
+              <input type="submit" value="Tweet">
+              <span class="counter">140</span>
+            </form>
+          </section>
+
+          <section id="tweet-container">
+
+            <!-- <article class="tweets-comingup">
+              <header class="title">
+                <img src="https://res.cloudinary.com/teepublic/image/private/s--n53SgTVc--/t_Preview/b_rgb:6e2229,c_limit,f_jpg,h_630,q_90,w_630/v1527802601/production/designs/2716674_11.jpg" style="width: 50px; height: 50px;">
+                <h3>Sadaharu the Beast</h3>
+                <p>@sadaharu</p>
+              </header>
+
+              <section class="tweet-of">
+                <p>I eat raw chicken meat mixed with coconut oil and complex vitamins everyday! Love it!</p>
+              </section>
+
+              <footer class="time">
+                <p>14 days ago</p>
+                <div class="icons">
+                  <a href="#"><span class="glyphicon glyphicon-flag"></span></a>
+                  <a href="#"><span class="glyphicon glyphicon-retweet"></span></a>
+                  <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
+                </div>
+              </footer>
+            </article> -->
+
+          </section>
+          
     </main>
 
   </body>
