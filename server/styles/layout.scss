@@ -3,6 +3,13 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
+
+ %flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ }
+
 html {
   box-sizing: border-box;
 }
@@ -19,9 +26,11 @@ body {
   color: #244751;
   background-color: #eee;
   font-family: 'Lato', sans-serif;
+  @extend %flex;
 }
 
 .container {
+  @extend %flex;
   background-color: white;
     width: 550px;
     position: relative;
