@@ -1,0 +1,17 @@
+.icons .glyphicon {
+    padding-right: 8px;
+    visibility: hidden;
+  }
+
+.tweets-comingup:hover {
+    opacity: 1  ;
+    border: grey $border;
+}
+
+.tweets-comingup:hover .glyphicon {
+    visibility: visible;
+}
+
+input:hover {
+    color:slategray;
+}

@@ -1,37 +1,51 @@
-.container .new-tweet {
+$main-color: rgb(238, 238, 236);
+$border: 1.4px solid;
+%paddingLR {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+%vanish {
+    display: none;
+}
+%radius {
+    border-radius: 10px;
+}
+
+@import 'special-effects';
+
+.container {
+    .new-tweet {
     position: relative;
-    background-color: rgb(238, 238, 236);
+    background-color: $main-color;
     top: 50px;
     margin: 0 30px;
-    border: rgb(201, 196, 196) solid 1.4px;
-    border-radius: 10px;
+    border: rgb(201, 196, 196) $border;
+    @extend %radius;
     padding-top: 0;
     padding-right: 2em;
     padding-left: 2em;
     padding-bottom: 1.1em;
     display: none;
+
+    h2 {
+        border-bottom: $border black;
+    }
+
+    textarea {
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .counter {
+        float: right;
+    }
+
+    .returnRed {
+        color: red;
+    }
+  }
 }
 
-.container h2 {
-    border-bottom: 1.4px solid black;
-}
-
-.container textarea {
-    width: 100%;
-    margin-top: 12px;
-}
-
-.container .counter {
-    float: right;
-}
-
-input:hover {
-    color:slategray;
-}
-
-.container .returnRed {
-    color: red;
-}
 
 #tweet-container {
     margin-top: 80px;
@@ -40,87 +54,74 @@ input:hover {
 .tweets-comingup {
     background-color: white;
     margin: 0 30px;
-    border: rgb(201, 196, 196) solid 1.4px;
-    border-radius: 10px;
+    border: rgb(201, 196, 196) $border;
+    @extend %radius;
     opacity: 0.75;
     margin-bottom: 12px;
-}
 
-.tweets-comingup:hover {
-    opacity: 1  ;
-    border: grey solid 1.4px;
-}
+    .title {
+        background-color: $main-color;
+        width: 100%;
+        display: flex;
+        border-top-left-radius: 10px;
+        border-top: 10px solid;
+        border-top-right-radius: 10px;
+    }
 
-.tweets-comingup:hover .glyphicon {
-    visibility: visible;
-}
+    .tweet-of {
+        height: 150px;
+        display: flex;
+        align-items: center;
+    }
 
-.tweets-comingup  .title {
-    background-color: rgb(238, 238, 236);
-    width: 100%;
-    display: flex;
-    border-top-left-radius: 10px;
-    border-top: 10px solid;
-    border-top-right-radius: 10px;
+    .time {
+        display: flex;
+        border-top: solid 1px rgb(223, 223, 217);
+        align-items: center;
+        justify-content: flex-start;
+
+        p {
+            padding-left: 8px;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        .icons {
+            margin-left: auto;
+            padding-right: 8px;
+          }
+          
+    }
 }
 
 .title img {
-    width: 50px;
-    height: 50px;
-    padding-left: 8px;
-    padding-top: 8px;
-    margin-right: 8px;
+    size: 50px 50px;
+    margin: 8px 8px;
+    border-radius: 5px;
 }
 
 .title p {
     margin-left: auto;
-    order: 2;
     margin-right: 8px;
     font-size: 12px;
     align-items: center;
     display: flex;
 }
 
-.tweets-comingup .tweet-of {
-    height: 150px;
-    display: flex;
-    align-items: center;
-}
-
 .tweet-of p {
-    padding-left: 8px;
-    padding-right: 8px;
+    @extend %paddingLR;
     width: 100%;
     overflow-wrap: break-word;
 }
 
-.tweets-comingup .time {
-    display: flex;
-    border-top: solid 1px rgb(223, 223, 217);
-    align-items: center;
-    justify-content: flex-start;
-}
 
-.time p {
-    padding-left: 8px;
-    font-size: 11px;
-    margin-top: 8px;
-}
 
-.time .icons {
-  margin-left: auto;
-  padding-right: 8px;
-}
+#input-tweet {
+    #zeroInput {
+        @extend %vanish;
+    }
 
-.icons .glyphicon {
-  padding-right: 8px;
-  visibility: hidden;
-}
-
-#input-tweet #zeroInput {
-    display: none;
-}
-
-#input-tweet #overMax {
-    display: none;
+    #overMax{
+        @extend %vanish;
+    }
 }
