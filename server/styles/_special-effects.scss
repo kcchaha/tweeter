@@ -1,5 +1,5 @@
 .icons .glyphicon {
-    padding-right: 8px;
+    padding-left: 6px;
     visibility: hidden;
   }
 
@@ -14,4 +14,14 @@
 
 input:hover {
     color:slategray;
+}
+
+.likes {
+    visibility: hidden;
+    padding-left: 1px;
+    font-size: 10px;
+}
+
+.tweets-comingup:hover .likes {
+    visibility: visible;
 }

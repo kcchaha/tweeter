@@ -50,10 +50,34 @@ function createTweetElement(tweet) {
       <div class="icons">
         <a href="#"><span class="glyphicon glyphicon-flag"></span></a>
         <a href="#"><span class="glyphicon glyphicon-retweet"></span></a>
-        <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
+        <a href="#" class="likeTweet" tweet-id="${tweet._id}"><span class="glyphicon glyphicon-heart"></span></a><span class="likes">${tweet.numOfLikes > 0 ? tweet.numOfLikes : 0}</span>
       </div>
     </footer>
   </article>`);
+
+  $tweet.find('.likeTweet').on("click", function(cc) {
+    cc.preventDefault();
+  
+    const data_id = $(this).attr('tweet-id');
+    const url = `/tweets/like/${data_id}`;
+
+    $.ajax({
+      method: 'POST',
+      dataType: 'json',
+      url: url,
+      error: function(req, status, error) {
+        console.log('Error!')
+      },
+      success: function(res, statusCode) {
+        const $likes = $('.likes'); // changing all the tweets
+        const val = $likes.html();
+        $likes.html(`${Number(val) + 1}`)
+        $(".likeTweet").css("color", "#c0392b")
+      }
+    });
+
+});
+
   return $tweet;
 }
 

@@ -1,6 +1,11 @@
+%radius {
+    border-radius: 10px;
+}
+
+
 #nav-bar {
-    width: 100%;
     background-color: #00a087;
+    width: 100%;
     height: 80px;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -19,7 +24,7 @@
         margin-right: 10px;
     }
     .header {
-        font-size: 2rem;
+        font-size: 3rem;
         height: 80px;
         line-height: 80px;
         position: absolute;

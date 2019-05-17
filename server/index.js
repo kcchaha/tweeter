@@ -2,20 +2,19 @@
 
 // Basic express setup:
 
-const PORT          = 3000;
-const sassMiddleware = require('node-sass-middleware');
-const path = require('path');
-const express       = require("express");
-const bodyParser    = require("body-parser");
-const app           = express();
+const PORT            = 3000;
+const sassMiddleware  = require('node-sass-middleware');
+const path            = require('path');
+const express         = require("express");
+const bodyParser      = require("body-parser");
+const app             = express();
 
 app.use(sassMiddleware({
   src: path.join(__dirname, 'styles'),
   dest: path.join('public', 'styles'),
   debug: true,
-  // force: true,
   outputStyle: 'compressed',
-  prefix:  '/styles', error: console.log// Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+  prefix:  '/styles', error: console.log
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));

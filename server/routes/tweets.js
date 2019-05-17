@@ -41,6 +41,14 @@ module.exports = function(DataHelpers) {
     });
   });
 
+  tweetsRoutes.post("/like/:id", function(req, res) {
+    res.json({'ok': 'like me!'})
+    console.log('params: ', req.params);
+    let id = req.params.id;
+    DataHelpers.likeTweets(id) 
+
+  });
+
   return tweetsRoutes;
 
 }
