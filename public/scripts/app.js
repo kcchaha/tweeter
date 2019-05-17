@@ -61,6 +61,8 @@ function createTweetElement(tweet) {
     const data_id = $(this).attr('tweet-id');
     const url = `/tweets/like/${data_id}`;
 
+    const $thisTweet = $(this);
+
     $.ajax({
       method: 'POST',
       dataType: 'json',
@@ -69,9 +71,9 @@ function createTweetElement(tweet) {
         console.log('Error!')
       },
       success: function(res, statusCode) {
-        const $likes = $('.likes'); // changing all the tweets
-        const val = $likes.html();
-        $likes.html(`${Number(val) + 1}`)
+        const $next = $thisTweet.next();
+        const val = $next.html();
+        $next.html(`${Number(val) + 1}`);
         $(".likeTweet").css("color", "#c0392b")
       }
     });
