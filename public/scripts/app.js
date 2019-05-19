@@ -4,14 +4,15 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Helper function for input safety
+
+// Helper function: Input safety
 function escape(str) {
   var div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-// Helper function for calculating creat time elasped for each tweet
+// Helper function: calculating create time elasped for each tweet
 function timeElapsed(createTime) {
   let now = new Date();
   let rightNow = now.getTime();
@@ -33,8 +34,17 @@ function timeElapsed(createTime) {
   }
 }
 
+// Helper function: append each new composed tweets into tweet container
+function renderTweets(tweets) {
+  for (tweet of tweets) {
+    $('#tweet-container').append(createTweetElement(tweet));
+  }
+}
+
+// Building basic structure of each tweet by using jQuery
 function createTweetElement(tweet) {
-    let $tweet = $(`<article class="tweets-comingup">
+  let $tweet = $(
+  `<article class="tweets-comingup">
     <header class="title">
       <img src="${tweet.user.avatars.small}">
       <h3>${escape(tweet.user.name)}</h3>
@@ -55,12 +65,12 @@ function createTweetElement(tweet) {
     </footer>
   </article>`);
 
+  // Instant Like tweets function enabled by using AJAX
   $tweet.find('.likeTweet').on("click", function(cc) {
     cc.preventDefault();
   
     const data_id = $(this).attr('tweet-id');
     const url = `/tweets/like/${data_id}`;
-
     const $thisTweet = $(this);
 
     $.ajax({
@@ -68,40 +78,35 @@ function createTweetElement(tweet) {
       dataType: 'json',
       url: url,
       error: function(req, status, error) {
-        console.log('Error!')
+        return error;
       },
       success: function(res, statusCode) {
         const $next = $thisTweet.next();
         const val = $next.html();
         $next.html(`${Number(val) + 1}`);
-        $(".likeTweet").css("color", "#c0392b")
+        $thisTweet.css("color", "#c0392b")
       }
     });
-
-});
-
+  });
   return $tweet;
 }
 
-function renderTweets(tweets) {
-  for (tweet of tweets) {
-    $('#tweet-container').append(createTweetElement(tweet));
-  }
-}
-
+// Real-time interactions on the page
 $(document).ready(() => {
   loadTweets();
   
+  // Toggled tweet composing field
   $('.compose').on('click', () => {
     $('.new-tweet').slideToggle(180);
     $('#input-tweet :input:enabled:visible:first').focus();
   });
 
+  // Set restrictions for tweet composing by using error messages
   $('#input-tweet').on(('submit'), function(event) {
       event.preventDefault();
       let queryString = $(this).serialize();
-      let text = $(this).find("textarea").val()
-      console.log(queryString);
+      let text = $(this).find("textarea").val();
+
       if (text.length === 0) {
         $('#zeroInput').slideDown(300);
         $('#overMax').hide();
@@ -111,37 +116,38 @@ $(document).ready(() => {
       } else {
         $('#zeroInput').slideUp(100);
         $('#overMax').slideUp(100);
+
+    // Load new tweet in the main page instantly after submission by AJAX
     $.ajax('/tweets', {
-          method: 'POST',
-          dataType: 'json',
-          data: queryString,
-          error: function(req, status, error) {
-              console.log('nooooo!')
-            },
+        method: 'POST',
+        dataType: 'json',
+        data: queryString,
+        error: function(req, status, error) {
+          return error;
+        },
         success: function(res, statusCode) {
-            $('#tweet-container').prepend(createTweetElement(res));
-            $('#textInput').val('');
-            $('.counter').text(140);
+          $('#tweet-container').prepend(createTweetElement(res));
+          $('#textInput').val('');
+          $('.counter').text(140);
         }
-    
-    })
-}
+      })
+    }
   });
 
+  // Helper function: Displaying all the tweets in real time and sort from newest to oldest by using AJAX
   function loadTweets() {
     $.ajax('/tweets', {
       method: 'GET',
       dataType: 'json',
       error: function(req, status, error) {
-        console.log('nooooo!')
+        return error;
       },
       success: function(res, statusCode) {
         res.sort(function(a, b) {
           return b.created_at - a.created_at;
         });
         renderTweets(res);
-        console.log('Yeah!!');
       }
-    })
+    });
   }
 });

@@ -27,14 +27,13 @@ module.exports = function makeDataHelpers(db) {
         callback(null, tweets);
       });
     },
+
+    // Get the number of likes of each tweet and save in the database
     likeTweets: function(tweetID) {
       db.collection("tweets").findOneAndUpdate({_id: new ObjectId(tweetID)}, { $inc: {numOfLikes: 1 }}, {returnOriginal: false}, (err, result) => {
         if (err) {
-          console.log(err);
           return err;
         }
-        console.log(tweetID);
-        console.log("result: ", result);
       });
     }
   };

@@ -41,14 +41,11 @@ module.exports = function(DataHelpers) {
     });
   });
 
+  // Adding a post route for liking tweets
   tweetsRoutes.post("/like/:id", function(req, res) {
     res.json({'ok': 'like me!'})
-    console.log('params: ', req.params);
     let id = req.params.id;
-    DataHelpers.likeTweets(id) 
-
+    DataHelpers.likeTweets(id) ;
   });
-
   return tweetsRoutes;
-
 }
