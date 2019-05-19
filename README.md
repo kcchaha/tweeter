@@ -28,8 +28,8 @@ Tweeter was built with front-end techniques such as HTML, CSS, JS, jQuery and AJ
 
 ## Final Product
 
-!["Main page"]()
-!["Liked tweet"]()
-!["Hovering effects and responsive design"]()
-!["Error - empty input"]()
-!["Error -  Max input exceed"]()
+!["Main page"](https://github.com/kcchaha/tweeter/blob/master/docs/main%20page.png)
+!["Liked tweet"](https://github.com/kcchaha/tweeter/blob/master/docs/liked%20tweet.png)
+!["Hovering effects and responsive design"](https://github.com/kcchaha/tweeter/blob/master/docs/hovering%20effect%20and%20responsive%20design.png)
+!["Error - empty input"](https://github.com/kcchaha/tweeter/blob/master/docs/error%20no%20input.png)
+!["Error -  Max input exceed"](https://github.com/kcchaha/tweeter/blob/master/docs/error%20max%20input%20exceed.png)
